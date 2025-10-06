@@ -1,3 +1,4 @@
+
 // weather-header.js
 
 const apiKey = "b1122ec5871b8915791ca0070108b396";
@@ -71,6 +72,23 @@ async function fetchNews() {
     console.error("Error fetching news:", error);
   }
 }
+
+function displayNews(articles) {
+  const newsContainer = document.getElementById('news-container');
+  newsContainer.innerHTML = ''; // 
+
+  articles.slice(0, 5).forEach(article => {
+    const newsItem = document.createElement('div');
+    newsItem.classList.add('news-item');
+    newsItem.innerHTML = `
+      <h3>${article.title}</h3>
+      <p>${article.description || ''}</p>
+      <a href="${article.url}" target="_blank">Read more</a>
+    `;
+    newsContainer.appendChild(newsItem);
+  });
+}
+
 
 
 // Dynamic Footer Year
