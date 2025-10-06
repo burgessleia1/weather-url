@@ -57,6 +57,22 @@ function calculateWindChill(temp, windSpeed) {
   }
 }
 
+const newsApiKey = '60993872ddb349b49c4c31e96f0825d9';  
+const newsUrl = `https://newsapi.org/v2/top-headlines?country=us&apiKey=${newsApiKey}`;
+
+async function fetchNews() {
+  try {
+    const response = await fetch(newsUrl);
+    const data = await response.json();
+    if (data.articles) {
+      displayNews(data.articles);
+    }
+  } catch (error) {
+    console.error("Error fetching news:", error);
+  }
+}
+
+
 // Dynamic Footer Year
 const year = new Date().getFullYear();
 document.querySelector("#footer").textContent = `© ${year} Weather & News App`;
